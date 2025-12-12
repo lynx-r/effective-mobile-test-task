@@ -1,0 +1,27 @@
+# Ignore the .git directory and related files
+.git
+.gitignore
+
+# Ignore common dependency/cache folders for various languages
+node_modules
+**/node_modules
+target
+build
+dist
+.cache
+__pycache__
+
+# Ignore common log, environment, and secret files
+*.log
+npm-debug.log*
+.env
+.aws/
+passphrase.txt
+
+# Exclude the Dockerfile itself (if in the root) and the .dockerignore file
+Dockerfile
+.dockerignore
+
+# Exclude files in the docs directory, but re-include a specific file inside it
+docs/*
+!docs/important.md

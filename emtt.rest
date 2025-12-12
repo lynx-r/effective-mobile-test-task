@@ -1,0 +1,137 @@
+@identity-api=http://localhost:3311
+@profile-api=http://localhost:3322
+
+################################# Identity API #################################
+
+###
+# @name ApiRoot_Identity
+GET {{identity-api}}
+###
+
+
+###
+# @name Login
+POST {{identity-api}}/api/v1/identity/login
+accept: application/json
+Content-Type: application/json
+
+{
+  "email": "dev@dev.com",
+  "password": "Admin@12345"
+}
+###
+
+
+###
+# @name Register_User
+POST {{identity-api}}/api/v1/user/register
+accept: application/json
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "Admin@12345",
+  "role": 0
+}
+###
+
+
+###
+# @name Logout
+POST {{identity-api}}/api/v1/identity/logout
+accept: application/json
+Content-Type: application/json
+
+{
+  "accessToken": "{{Login.response.body.access.token}}"
+}
+
+###
+
+
+###
+# @name Refresh_Token
+POST {{identity-api}}/api/v1/identity/refresh-token
+accept: application/json
+Content-Type: application/json
+
+{
+  "refreshToken": "{{Login.response.body.refresh.token}}"
+}
+
+###
+
+
+###
+# @name Create_User
+POST {{identity-api}}/api/v1/user/create
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+
+{
+  "email": "admin3@admin.com",
+  "password": "Admin@12345",
+  "role": 0
+}
+###
+
+
+###
+# @name Block_User
+PUT  {{identity-api}}/api/v1/user/block?id=2
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+
+###
+
+
+###
+# @name Get_User_By_Id
+GET  {{identity-api}}/api/v1/user/get-by-id?id=2
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+###
+
+###
+# @name Get_Me
+GET  {{identity-api}}/api/v1/user/get-me
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+###
+
+###
+# @name Get_Users
+GET  {{identity-api}}/api/v1/user/get?pageSize=20&page=1&order=DESC
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+###
+
+
+################################# Profile API #################################
+
+###
+# @name ApiRoot_Profile
+GET {{profile-api}}
+###
+
+###
+# @name Get_All_Profile
+GET  {{profile-api}}/api/v1/profile/get-all?pageSize=20&page=1&order=DESC
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+###
+
+
+###
+# @name Get_Profile_By_Id
+GET  {{profile-api}}/api/v1/profile/get-by-id?id=2
+accept: application/json
+Content-Type: application/json
+authorization: Bearer {{Login.response.body.access.token}}
+###

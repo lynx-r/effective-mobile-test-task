@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
+    "lib": ["es2022"],
+
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@auth/*": ["./src/auth/*"],
+      "@data/*": ["./src/data/*"],
+      "@extensions/*": ["./src/extensions/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@user/*": ["./src/user/*"],
+      "@test/*": ["./test/*"],
+      "@/*": ["./src/*"],
+      "tsoa": ["node_modules/tsoa/dist"],
+      "tsoa/": ["node_modules/tsoa/dist/"]
+    },
+    "outDir": "./dist",
+    "removeComments": true,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "strict": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "incremental": true,
+    "preserveConstEnums": true,
+    "resolveJsonModule": true
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register"],
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
