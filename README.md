@@ -72,6 +72,13 @@
 docker-compose -f ./deployments/docker-compose/infrastructure.yaml up -d
 ```
 
+Используйте следующую команду для запуска `инфраструктуры` и приложений с `docker` с помощью 
+[deploy.yaml](./deployments/docker-compose/deploy.yaml) из корня приложения:
+
+```bash
+docker-compose -f ./deployments/docker-compose/deploy.yaml up -d
+```
+
 ## База данных
 
 Создайте базы данных `identity` и `profile` в контейнере `postgres`.
