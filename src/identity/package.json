@@ -6,7 +6,7 @@
   "author": "Aleksei Popriadukhin",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc && nodemon",
+    "dev": "tsc && nodemon src/app.ts --watch",
     "build": "tsc",
     "start": "ts-node ./dist/identity/src/app.js",
     "format": "prettier --write \"**/*.{ts,js}\"",

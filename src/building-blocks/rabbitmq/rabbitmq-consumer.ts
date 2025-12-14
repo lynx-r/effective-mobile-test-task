@@ -1,14 +1,14 @@
 import asyncRetry from 'async-retry';
-import config from '../config/config';
+import { snakeCase } from 'lodash';
 import { container, injectable } from 'tsyringe';
+import config from '../config/config';
+import { Logger } from '../logging/logger';
+import { OtelDiagnosticsProvider } from '../open-telemetry/otel-diagnostics-provider';
 import { getTypeName } from '../utils/reflection';
 import { deserializeObject } from '../utils/serialization';
-import { snakeCase } from 'lodash';
 import { sleep } from '../utils/time';
-import { Logger } from '../logging/logger';
 import { RabbitMQConnection } from './rabbitmq-connection';
 import { RabbitmqConsumerOptions } from './rabbitmq-consumer-options-builder';
-import { OtelDiagnosticsProvider } from '../open-telemetry/otel-diagnostics-provider';
 
 const consumedMessages: string[] = [];
 export type handlerFunc<T> = (queue: string, message: T) => void;
@@ -78,9 +78,6 @@ export class Consumer implements IConsumer {
       Logger.error(error);
       await rabbitMQConnection.closeChanel();
     }
-
-    const sleep = (ms: number): Promise<void> =>
-      new Promise<void>((resolve) => setTimeout(resolve, ms));
   }
 
   async isConsumed<T>(message: T): Promise<boolean> {
