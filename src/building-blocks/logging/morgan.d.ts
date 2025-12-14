@@ -1,1 +1,1 @@
-export declare const morganMiddleware: (req: any, res: any, next: any) => void;
+export declare const morganMiddleware: (_req: any, res: any, next: any) => void;

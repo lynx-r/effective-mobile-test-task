@@ -1,6 +1,5 @@
 import { injectable } from 'tsyringe';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { createDatabase } from 'typeorm-extension';
 import config from '../config/config';
 import { Logger } from '../logging/logger';
 
@@ -22,9 +21,13 @@ export interface IDataSeeder {
 export class DbContext implements IDbContext {
   async initializeTypeorm(dataSourceOptions: DataSourceOptions): Promise<DataSource> {
     try {
-      await createDatabase({
-        options: dataSourceOptions
-      });
+      if (config.env !== 'test') {
+        const { createDatabase } = await import('typeorm-extension');
+
+        await createDatabase({
+          options: dataSourceOptions
+        });
+      }
 
       connection = await new DataSource(dataSourceOptions).initialize();
 

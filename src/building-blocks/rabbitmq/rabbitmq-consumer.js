@@ -11,15 +11,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Consumer = void 0;
 const async_retry_1 = __importDefault(require("async-retry"));
-const config_1 = __importDefault(require("../config/config"));
+const lodash_1 = require("lodash");
 const tsyringe_1 = require("tsyringe");
+const config_1 = __importDefault(require("../config/config"));
+const logger_1 = require("../logging/logger");
+const otel_diagnostics_provider_1 = require("../open-telemetry/otel-diagnostics-provider");
 const reflection_1 = require("../utils/reflection");
 const serialization_1 = require("../utils/serialization");
-const lodash_1 = require("lodash");
 const time_1 = require("../utils/time");
-const logger_1 = require("../logging/logger");
 const rabbitmq_connection_1 = require("./rabbitmq-connection");
-const otel_diagnostics_provider_1 = require("../open-telemetry/otel-diagnostics-provider");
 const consumedMessages = [];
 let Consumer = class Consumer {
     async addConsumer(consumerOptions) {
@@ -58,7 +58,6 @@ let Consumer = class Consumer {
             logger_1.Logger.error(error);
             await rabbitMQConnection.closeChanel();
         }
-        const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     }
     async isConsumed(message) {
         const timeoutTime = 30000;

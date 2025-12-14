@@ -41,7 +41,7 @@ const requestDurationHistogram = new Prometheus.Histogram({
     labelNames: ['method', 'path'],
     buckets: [0.1, 0.5, 1, 2, 5]
 });
-const requestDurationMiddleware = (err, req, res, next) => {
+const requestDurationMiddleware = (_err, req, res, next) => {
     const start = process.hrtime();
     res.on('finish', () => {
         const duration = getDurationInMilliseconds(start);

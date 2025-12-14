@@ -51,8 +51,8 @@ const isPasswordMatch = async (password, userPassword) => {
 exports.isPasswordMatch = isPasswordMatch;
 const generateFakeJwt = async () => {
     const fakeUser = {
-        userId: 'testUser',
-        scopes: ['admin']
+        sub: 1,
+        aud: ['admin']
     };
     return jwt.sign(fakeUser, config_1.default.jwt.secret, { expiresIn: '1h' });
 };

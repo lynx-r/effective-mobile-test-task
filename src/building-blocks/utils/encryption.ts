@@ -13,7 +13,7 @@ export const isPasswordMatch = async (password: string, userPassword: string) =>
 
 export const generateFakeJwt = async (): Promise<string> => {
   const fakeUser = {
-    userId: 'testUser',
+    userId: 1,
     scopes: ['admin']
   };
   return jwt.sign(fakeUser, config.jwt.secret, { expiresIn: '1h' });

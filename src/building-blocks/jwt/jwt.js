@@ -42,12 +42,6 @@ const config_1 = __importDefault(require("../config/config"));
 const unauthorized_exception_1 = __importDefault(require("../types/exception/unauthorized.exception"));
 const encryption_1 = require("../utils/encryption");
 async function expressAuthentication(request, securityName, scopes = []) {
-    if (securityName === 'api_key') {
-        let token;
-        if (request.query && request.query.access_token) {
-            token = request.query.access_token;
-        }
-    }
     if (securityName === 'jwt') {
         let token = request.body.token || request.query.token || request.headers['x-access-token'];
         if (config_1.default.env == 'test') {
