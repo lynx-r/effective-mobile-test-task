@@ -60,5 +60,43 @@ services:
     networks:
       - emtt
 
+  #######################################################
+  #  identity-service
+  #######################################################
+  identity:
+    container_name: identity
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+      args:
+        SERVICE_PATH: src/identity
+    ports:
+      - "3311:3311"
+    environment:
+      NODE_ENV: development
+      POSTGRES_HOST: postgres
+      RABBITMQ_HOST: rabbitmq
+    networks:
+      - emtt
+
+  #######################################################
+  #  profile-service
+  #######################################################
+  profile:
+    container_name: profile
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+      args:
+        SERVICE_PATH: src/profile
+    ports:
+      - "3322:3322"
+    environment:
+      NODE_ENV: development
+      POSTGRES_HOST: postgres
+      RABBITMQ_HOST: rabbitmq
+    networks:
+      - emtt
+
 networks:
   emtt:

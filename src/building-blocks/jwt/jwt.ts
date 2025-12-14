@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as jwt from 'jsonwebtoken';
-import { ParsedQs } from 'qs';
 import config from '../config/config';
 import { TokenScope } from '../contracts/identity.contract';
 import { JwtUserPayload } from '../types/auth/jwt-user-payload';
@@ -12,13 +11,6 @@ export async function expressAuthentication(
   securityName: string,
   scopes: TokenScope[] = []
 ): Promise<any> {
-  if (securityName === 'api_key') {
-    let token: string | ParsedQs | (string | ParsedQs)[];
-    if (request.query && request.query.access_token) {
-      token = request.query.access_token;
-    }
-  }
-
   if (securityName === 'jwt') {
     let token = request.body.token || request.query.token || request.headers['x-access-token'];
 

@@ -7,7 +7,7 @@ const requestDurationHistogram = new Prometheus.Histogram({
   buckets: [0.1, 0.5, 1, 2, 5] // Adjust buckets based on your requirements
 });
 
-export const requestDurationMiddleware = (err, req, res, next) => {
+export const requestDurationMiddleware = (_err, req, res, next) => {
   const start = process.hrtime();
 
   res.on('finish', () => {
