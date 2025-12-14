@@ -67,7 +67,7 @@ async function expressAuthentication(request, securityName, scopes = []) {
                     if (!!scopes.length) {
                         let isScoped = false;
                         for (const scope of scopes) {
-                            if (decoded?.aud?.includes(scope)) {
+                            if (decoded?.scopes?.includes(scope)) {
                                 isScoped = true;
                                 break;
                             }

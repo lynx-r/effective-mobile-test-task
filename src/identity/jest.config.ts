@@ -6,19 +6,17 @@ export default {
   testEnvironment: 'node',
   testTimeout: 90000,
   testMatch: ['**/*.test.ts'],
-  // Эта опция говорит Jest, какие модули в node_modules нужно транспилировать:
-  transformIgnorePatterns: [
-    // НЕ игнорировать эти конкретные пакеты:
-    'node_modules/(?!(@faker-js/faker|typeorm-extension)/)'
-  ],
-  // Если используете ts-jest, иногда нужно явно указать Node как цель для транспиляции
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        module: 'CommonJS', // Убедитесь, что ваш код компилируется в CJS
-        target: 'ES2020'
+  transformIgnorePatterns: ['node_modules/(?!(@faker-js/faker|typeorm-extension)/)'],
+  transform: {
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: {
+          module: 'CommonJS',
+          target: 'ES2020'
+        }
       }
-    }
+    ]
   },
   moduleNameMapper: {
     '^@auth/(.*)$': ['<rootDir>/src/auth/$1'],

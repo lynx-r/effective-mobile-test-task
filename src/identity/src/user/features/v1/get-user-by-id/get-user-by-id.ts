@@ -54,8 +54,8 @@ export class GetUserByIdHandler implements IRequestHandler<GetUserById, UserDto>
   async handle(request: GetUserById): Promise<UserDto> {
     await getUserByIdValidations.params.validateAsync(request);
 
-    const isAdmin = request.user.aud?.includes(TokenScope.ADMIN);
-    const userId = +request.user.sub;
+    const isAdmin = request.user.scopes?.includes(TokenScope.ADMIN);
+    const userId = +request.user.userId;
 
     const userEntity = await this.userRepository.findUserById(request.id);
     if (!userEntity) {

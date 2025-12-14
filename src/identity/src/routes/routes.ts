@@ -209,7 +209,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsBlockUserController_blockUser: Record<string, TsoaRoute.ParameterSchema> = {
-                authorization: {"in":"header","name":"authorization","required":true,"dataType":"string"},
+                user: {"in":"request-prop","name":"user","required":true,"dataType":"any"},
                 id: {"in":"query","name":"id","required":true,"dataType":"double"},
         };
         app.put('/api/v1/user/block',

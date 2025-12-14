@@ -21,13 +21,13 @@ export interface IDataSeeder {
 export class DbContext implements IDbContext {
   async initializeTypeorm(dataSourceOptions: DataSourceOptions): Promise<DataSource> {
     try {
-      if (config.env !== 'test') {
-        const { createDatabase } = await import('typeorm-extension');
+      // if (config.env !== 'test') {
+      //   const { createDatabase } = await import('typeorm-extension');
 
-        await createDatabase({
-          options: dataSourceOptions
-        });
-      }
+      //   await createDatabase({
+      //     options: dataSourceOptions
+      //   });
+      // }
 
       connection = await new DataSource(dataSourceOptions).initialize();
 

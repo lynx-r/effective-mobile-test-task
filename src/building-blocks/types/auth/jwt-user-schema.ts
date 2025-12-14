@@ -5,9 +5,9 @@ const validScopes = Object.values(TokenScope);
 const validTypes = Object.values(TokenType);
 
 const jwtUserSchema = Joi.object({
-  iss: Joi.string().optional(),
-  sub: Joi.number().integer().optional(),
-  aud: Joi.array()
+  email: Joi.string().email().optional(),
+  userId: Joi.number().integer().optional(),
+  scopes: Joi.array()
     .items(Joi.string().valid(...validScopes))
     .optional(),
   exp: Joi.number().integer().optional(),

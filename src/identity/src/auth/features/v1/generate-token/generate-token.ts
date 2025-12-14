@@ -38,12 +38,12 @@ const generateJwtToken = (
   secret: string = config.jwt.secret
 ): string => {
   const payload = {
-    iss: email,
-    sub: userId,
+    email,
+    userId,
     iat: moment().unix(),
     exp: expires,
     type,
-    aud: scopes
+    scopes
   };
   return jwt.sign(payload, secret);
 };

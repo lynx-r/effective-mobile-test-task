@@ -49,7 +49,7 @@ export class GetMeHandler implements IRequestHandler<GetMeByAuthorization, UserD
   async handle(request: GetMeByAuthorization): Promise<UserDto> {
     await getMeByAuthorizationValidations.params.validateAsync(request);
 
-    const userId = +request.user.sub;
+    const userId = +request.user.userId;
 
     const userEntity = await this.userRepository.findUserById(userId);
     if (!userEntity) {

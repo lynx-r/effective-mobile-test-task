@@ -273,14 +273,6 @@
 				],
 				"parameters": [
 					{
-						"in": "header",
-						"name": "authorization",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
 						"in": "query",
 						"name": "id",
 						"required": true,

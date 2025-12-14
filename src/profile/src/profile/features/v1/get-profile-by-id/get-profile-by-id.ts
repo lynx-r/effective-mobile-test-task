@@ -55,15 +55,15 @@ export class GetProfileByIdHandler implements IRequestHandler<GetProfileById, Pr
   async handle(request: GetProfileById): Promise<ProfileDto> {
     await getProfileByIdValidations.params.validateAsync(request);
 
-    const isAdmin = request.user.aud?.includes(TokenScope.ADMIN);
-    const issEmail = request.user.iss;
+    const isAdmin = request.user?.scopes?.includes(TokenScope.ADMIN);
+    const currentEmail = request.user?.email;
 
     const profileEntity = await this.profileRepository.findProfileById(request.id);
     if (!profileEntity) {
       return null;
     }
 
-    if (!(isAdmin || profileEntity.email === issEmail)) {
+    if (!(isAdmin || profileEntity.email === currentEmail)) {
       throw new ForbiddenException('User not admin or himself');
     }
 

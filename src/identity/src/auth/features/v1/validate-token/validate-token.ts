@@ -33,7 +33,7 @@ export class ValidateTokenHandler implements IRequestHandler<ValidateToken, Toke
     if (typeof payload === 'string') {
       throw new NotFoundException('Token not found');
     }
-    const userId = +payload.sub;
+    const userId = +payload.userId;
 
     let token: Token = null;
 
@@ -47,6 +47,6 @@ export class ValidateTokenHandler implements IRequestHandler<ValidateToken, Toke
       throw new NotFoundException('Token not found');
     }
 
-    return { ...token, email: payload.iss };
+    return { ...token, email: payload.email };
   }
 }
