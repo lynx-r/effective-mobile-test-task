@@ -29,7 +29,7 @@ accept: application/json
 Content-Type: application/json
 
 {
-  "email": "admin@admin.com",
+  "email": "dev1@dev.com",
   "password": "Admin@12345",
   "role": 0
 }
@@ -70,7 +70,7 @@ Content-Type: application/json
 authorization: Bearer {{Login.response.body.access.token}}
 
 {
-  "email": "admin3@admin.com",
+  "email": "dev2@dev.com",
   "password": "Admin@12345",
   "role": 0
 }
