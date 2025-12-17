@@ -53,9 +53,7 @@ export class RefreshTokenHandler implements IRequestHandler<RefreshToken, AuthDt
 
       await this.authRepository.removeToken(refreshTokenData);
 
-      const result = await mediatrJs.send<AuthDto>(
-        new GenerateToken({ email, userId: userId, scopes })
-      );
+      const result = await mediatrJs.send<AuthDto>(new GenerateToken({ email, userId, scopes }));
 
       return result;
     } catch {

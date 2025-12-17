@@ -12,7 +12,6 @@ import { postgresContainerStart } from 'building-blocks/test/container/postgres/
 import { rabbitMqContainerStart } from 'building-blocks/test/container/rabbitmq/rabbitmq-container';
 import { DataSource } from 'building-blocks/typeorm';
 import express, { Express } from 'express';
-import passport from 'passport';
 import { StartedTestContainer } from 'testcontainers';
 import { container } from 'tsyringe';
 
@@ -45,8 +44,6 @@ export class IntegrationTestFixture {
     this.fixture.app.use(express.json());
 
     this.fixture.app.use(express.urlencoded({ extended: true }));
-
-    this.fixture.app.use(passport.initialize());
 
     RegisterRoutes(this.fixture.app);
 

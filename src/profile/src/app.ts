@@ -9,7 +9,6 @@ import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
-import passport from 'passport';
 import { collectDefaultMetrics } from 'prom-client';
 import 'reflect-metadata';
 import { postgresOptions } from './data/data-source';
@@ -51,8 +50,6 @@ const startupApp = async () => {
   app.options('*', cors());
 
   await initialOpenTelemetry(app);
-
-  app.use(passport.initialize());
 
   RegisterRoutes(app);
 
